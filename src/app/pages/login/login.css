@@ -1,0 +1,351 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at center,
+    #1a1a2e 0%,
+    #16213e 50%,
+    #0f0f23 100%
+  );
+  color: white;
+  position: relative;
+}
+
+/* Animated Background */
+.bg-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floating-card {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: floatCard 15s infinite linear;
+  opacity: 0.1;
+}
+
+.floating-card:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+.floating-card:nth-child(2) {
+  top: 20%;
+  left: 15%;
+  animation-delay: 3s;
+}
+.floating-card:nth-child(3) {
+  top: 60%;
+  left: 8%;
+  animation-delay: 6s;
+}
+.floating-card:nth-child(4) {
+  top: 80%;
+  left: 20%;
+  animation-delay: 9s;
+}
+.floating-card:nth-child(5) {
+  top: 30%;
+  right: 10%;
+  animation-delay: 12s;
+}
+.floating-card:nth-child(6) {
+  top: 70%;
+  right: 5%;
+  animation-delay: 15s;
+}
+
+@keyframes floatCard {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffd700;
+  border-radius: 50%;
+  animation: particleFloat 8s infinite linear;
+  opacity: 0;
+}
+
+.particle:nth-child(odd) {
+  animation-delay: 2s;
+  background: #ff6b35;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Main Container */
+.login-container {
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Login Box */
+.login-box {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo */
+.logo {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Title */
+.login-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ffd700, #ff6b35, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.login-subtitle {
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-input {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ffd700;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Buttons */
+.btn-login {
+  background: linear-gradient(45deg, #ff6b35, #ff8e53);
+  color: white;
+  padding: 18px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-login:hover::before {
+  left: 100%;
+}
+
+.btn-login:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+}
+
+.btn-register {
+  background: transparent;
+  color: white;
+  padding: 15px;
+  border: 2px solid #ffd700;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.btn-register:hover {
+  background: #ffd700;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Links */
+.forgot-password {
+  color: #ff6b35;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #ff8e53;
+}
+
+/* Back Button */
+.back-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.back-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-box {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .login-title {
+    font-size: 2rem;
+  }
+
+  .back-btn {
+    top: 1rem;
+    left: 1rem;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
