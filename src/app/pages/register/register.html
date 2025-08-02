@@ -33,22 +33,25 @@
 
       <!-- Title -->
       <h1 class="login-title">Register</h1>
-      <p class="login-subtitle">Crea tu cuenta</p>
+      <p class="register-subtitle">Crea tu cuenta</p>
+
+      <!-- Error message -->
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 
       <!-- Form -->
-      <form class="login-form">
-        <input type="text" class="form-input" placeholder="Usuario " />
+<form class="login-form" (ngSubmit)="onSubmit()">
+<input type="text" class="form-input" placeholder="Nombre Completo" [(ngModel)]="userData.fullName" name="fullName" required />
 
-        <input type="email" class="form-input" placeholder=" Email" />
+<input type="email" class="form-input" placeholder="Email" [(ngModel)]="userData.email" name="email" required />
 
-        <input type="password" class="form-input" placeholder="Contraseña" />
+<input type="password" class="form-input" placeholder="Contraseña" [(ngModel)]="userData.password" name="password" required />
 
         <button type="submit" class="btn-login">Registrarse</button>
       </form>
 
       <!-- Links -->
 
-      <a href="#" class="btn-register">Iniciar Sesion</a>
+<a routerLink="/login" class="btn-register">Iniciar Sesion</a>
     </div>
   </div>
 </body>

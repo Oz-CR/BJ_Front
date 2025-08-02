@@ -22,8 +22,8 @@
     <div class="particle" style="left: 90%; animation-delay: 8s"></div>
   </div>
 
-  <!-- Back Button -->
-  <a href="#" class="back-btn">← Salir</a>
+  <!-- Logout Button -->
+  <button class="back-btn" (click)="logout()">← Logout</button>
 
   <!-- Main Container -->
   <div class="main-container">
@@ -36,19 +36,20 @@
 
     <!-- Controls -->
     <div class="lobby-controls">
-      <button class="btn-create" onclick="openModal()">+ CREAR MESA</button>
+<button class="btn-create" (click)="openModal()">+ CREAR MESA</button>
+<button class="btn-create" (click)="refreshGames()" style="margin-left: 10px; background-color: #28a745;">🔄 REFRESH</button>
     </div>
 
-    <!-- Games Grid -->
+    <!-- Debug Info -->
+    <div style="color: white; margin: 10px; padding: 10px; background: rgba(0,0,0,0.5); border-radius: 5px;">
+      Debug: {{games.length}} juegos encontrados
+    </div>
 
     <!-- Games Grid -->
     <div class="games-grid">
-      <app-crad-game></app-crad-game>
-      <app-crad-game></app-crad-game>
-      <app-crad-game></app-crad-game>
-      <app-crad-game></app-crad-game>
+      <app-crad-game *ngFor="let g of games" [game]="g"></app-crad-game>
     </div>
   </div>
 
-  <app-form-room></app-form-room>
+<app-form-room *ngIf="isModalVisible" (cancel)="isModalVisible = false" (gameCreated)="onGameCreated($event)"></app-form-room>
 </body>

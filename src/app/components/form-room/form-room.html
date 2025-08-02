@@ -4,20 +4,25 @@
       <h2 class="modal-title">CREAR NUEVA MESA</h2>
       <p style="color: #b0b0b0">Configura tu mesa personalizada</p>
     </div>
-    <form class="create-form">
+    <form class="create-form" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label class="form-label">Nombre de la Mesa</label>
         <input
           type="text"
           class="form-input"
           placeholder="Ej: Mi Mesa VIP"
+          [(ngModel)]="gameName"
+          name="gameName"
           required
+          [disabled]="isCreating"
         />
       </div>
 
       <div class="modal-actions">
-        <button type="button" class="btn-cancel" onclick="">CANCELAR</button>
-        <button type="submit" class="btn-confirm">CREAR MESA</button>
+<button type="button" class="btn-cancel" (click)="onCancel()" [disabled]="isCreating">CANCELAR</button>
+        <button type="submit" class="btn-confirm" [disabled]="isCreating || !gameName.trim()">
+          {{isCreating ? 'CREANDO...' : 'CREAR MESA'}}
+        </button>
       </div>
     </form>
   </div>
