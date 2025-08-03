@@ -1,0 +1,247 @@
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+.game-header h2 {
+  color: #333;
+  margin: 0;
+}
+
+.btn-leave {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-leave:hover {
+  background-color: #c82333;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #f5c6cb;
+}
+
+.winner-announcement {
+  text-align: center;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.winner-announcement h3 {
+  color: #333;
+  margin: 0;
+  font-size: 24px;
+}
+
+.game-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.my-turn {
+  color: #28a745;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.waiting-turn {
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.players-info {
+  color: #495057;
+  font-weight: 500;
+}
+
+.game-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.btn-action {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.btn-hit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-hit:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.btn-stand {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-stand:hover:not(:disabled) {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}
+
+.btn-blackjack {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-blackjack:hover:not(:disabled) {
+  background-color: #1e7e34;
+  transform: translateY(-2px);
+}
+
+.btn-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.my-cards {
+  background-color: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.my-cards h4 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.cards-display {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.card {
+  background: linear-gradient(135deg, #fff, #f8f9fa);
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 80px;
+  text-align: center;
+}
+
+.card-content {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.total-value {
+  font-size: 18px;
+  text-align: center;
+}
+
+.over-21 {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.blackjack {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.other-players {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.other-players h4 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.player-info {
+  padding: 8px 12px;
+  background-color: #fff;
+  border-radius: 5px;
+  border-left: 4px solid #6c757d;
+}
+
+.current-turn {
+  border-left-color: #28a745 !important;
+  background-color: #d4edda !important;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    padding: 10px;
+  }
+  
+  .game-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .game-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-action {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .cards-display {
+    justify-content: center;
+  }
+}

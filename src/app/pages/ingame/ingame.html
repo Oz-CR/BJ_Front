@@ -1,1 +1,74 @@
-<p>ingame works!</p>
+<div *ngIf="game" class="game-container">
+  <div class="game-header">
+    <h2>{{ game.name }}</h2>
+    <button (click)="leaveGame()" class="btn-leave">Leave Game</button>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="winner" class="winner-announcement">
+    <h3>🎉 Winner: {{ winner }} 🎉</h3>
+  </div>
+
+  <div class="game-status">
+    <div class="turn-info">
+      <span *ngIf="isMyTurn" class="my-turn">🎯 It's your turn!</span>
+      <span *ngIf="!isMyTurn" class="waiting-turn">⏳ Waiting for your turn...</span>
+    </div>
+    <div class="players-info">
+      Players: {{ game.player_ids?.length || 0 }}
+    </div>
+  </div>
+
+  <div class="game-actions" *ngIf="!winner">
+    <button 
+      (click)="hitMe()" 
+      [disabled]="!isMyTurn" 
+      class="btn-action btn-hit">
+      🃏 Hit Me
+    </button>
+    <button 
+      (click)="endTurn()" 
+      [disabled]="!isMyTurn" 
+      class="btn-action btn-stand">
+      ✋ Stand
+    </button>
+    <button 
+      (click)="checkBlackJack()" 
+      [disabled]="winner || myTotalValue !== 21" 
+      class="btn-action btn-blackjack">
+      🎯 BlackJack!
+    </button>
+  </div>
+
+  <div class="my-cards">
+    <h4>Your Cards</h4>
+    <div class="cards-display">
+      <div *ngFor="let card of myCards" class="card">
+        <span class="card-content">{{ card.rank }} of {{ card.suit }}</span>
+      </div>
+    </div>
+    <div class="total-value">
+      <strong>Total Value: 
+        <span [class]="{'over-21': myTotalValue > 21, 'blackjack': myTotalValue === 21}">
+          {{ myTotalValue === -1 ? 'BUST!' : myTotalValue }}
+        </span>
+      </strong>
+    </div>
+  </div>
+
+  <div class="other-players" *ngIf="game.players">
+    <h4>Other Players</h4>
+    <div class="players-list">
+      <div *ngFor="let player of game.players" class="player-info">
+        <span [class]="{'current-turn': isPlayerTurn(player.id)}">{{ player.fullName || player.email }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!game">
+  <p>Loading...</p>
+</div>

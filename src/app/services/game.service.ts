@@ -163,4 +163,41 @@ export class GameService {
       };
     });
   }
+
+  // Métodos de juego
+  hitMe(gameId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/games/${gameId}/hit-me`, {}, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  endTurn(gameId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/games/${gameId}/end-turn`, {}, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  checkBlackJack(gameId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/games/${gameId}/blackjack`, {}, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  getMyCards(gameId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/games/${gameId}/my-cards`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  markReady(gameId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/games/${gameId}/ready`, {}, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  restartGame(gameId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/games/${gameId}/restart`, {}, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }
