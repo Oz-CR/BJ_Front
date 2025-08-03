@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-form-room',
@@ -18,13 +18,13 @@ export class FormRoom {
   gameName: string = '';
   isCreating: boolean = false;
   
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private gameService: GameService, private router: Router) {}
 
   onCancel() {
     this.cancel.emit();
   }
   
-  async onSubmit() {
+  onSubmit() {
     if (!this.gameName.trim()) {
       alert('Por favor ingresa un nombre para la mesa');
       return;
@@ -32,25 +32,24 @@ export class FormRoom {
     
     this.isCreating = true;
     
-    try {
-      const token = this.auth.getToken();
-      const response = await this.http.post('http://localhost:3333/create-game', {
-        name: this.gameName.trim()
-      }, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }).toPromise();
-      
-      console.log('Game created:', response);
-      this.gameCreated.emit(response);
-      this.cancel.emit(); // Cerrar el modal
-    } catch (error) {
-      console.error('Error creating game:', error);
-      alert('Error al crear la mesa. Inténtalo de nuevo.');
-    } finally {
-      this.isCreating = false;
-    }
+    this.gameService.createGame(this.gameName.trim()).subscribe({
+      next: (response) => {
+        console.log('Game created:', response);
+        this.gameCreated.emit(response);
+        
+        // Redirigir a la sala de espera
+        const gameId = response.data.game._id;
+        this.router.navigate(['/waiting-room', gameId]);
+        
+        this.cancel.emit(); // Cerrar el modal
+        this.isCreating = false;
+      },
+      error: (error) => {
+        console.error('Error creating game:', error);
+        alert('Error al crear la mesa. Inténtalo de nuevo.');
+        this.isCreating = false;
+      }
+    });
   }
 
 }

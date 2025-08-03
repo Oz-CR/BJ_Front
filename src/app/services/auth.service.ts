@@ -82,4 +82,13 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+
+  getCurrentUser(): Observable<any> {
+    const token = this.getToken();
+    return this.http.get(`${this.apiUrl}/me`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
 }

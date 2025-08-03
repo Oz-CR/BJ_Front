@@ -1,0 +1,59 @@
+.waiting-room {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.waiting-room h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.waiting-room p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.waiting-room ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.waiting-room li {
+  background-color: #f0f0f0;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border-left: 4px solid #007bff;
+}
+
+.waiting-room button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.waiting-room button:hover {
+  background-color: #0056b3;
+}
+
+.waiting-room button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.waiting-room div {
+  margin: 20px 0;
+}
+
+.waiting-room div p {
+  font-weight: bold;
+  color: #28a745;
+}

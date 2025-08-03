@@ -1,0 +1,29 @@
+<div *ngIf="loading">
+  <p>Cargando juego...</p>
+</div>
+
+<div *ngIf="!loading && game" class="waiting-room">
+  <h1>Sala de Espera</h1>
+  <p>Nombre del Juego: {{ game.name }}</p>
+  <p>ID de Juego: {{ gameId }} <button (click)="copyGameId()">Copiar</button></p>
+  <p>Jugadores en la sala:</p>
+  <ul>
+    <li *ngFor="let player of game.players">
+      {{ player.name }} ({{ player.email }})
+    </li>
+  </ul>
+
+  <div *ngIf="isOwner">
+    <p>Eres el dueño del juego. Puedes iniciar el juego cuando todos estén listos.</p>
+    <button (click)="startGame()" [disabled]="game.players.length < 2">Iniciar Juego</button>
+  </div>
+
+  <p *ngIf="error" style="color: red;">{{ error }}</p>
+
+  <button (click)="leaveGame()">Salir de la sala</button>
+</div>
+
+<div *ngIf="!loading && !game">
+  <p>No se ha podido cargar la información del juego.</p>
+  <button (click)="leaveGame()">Volver a las salas</button>
+</div>

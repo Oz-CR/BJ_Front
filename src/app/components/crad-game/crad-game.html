@@ -16,6 +16,8 @@
     </div>
   </div>
   <div class="game-actions">
-    <button class="btn-join">UNIRSE</button>
+    <button class="btn-join" (click)="joinGame()" [disabled]="isJoining">
+      {{ isJoining ? 'UNIÉNDOSE...' : 'UNIRSE' }}
+    </button>
   </div>
 </div>
