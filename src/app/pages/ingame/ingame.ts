@@ -229,6 +229,29 @@ export class Ingame implements OnInit, OnDestroy {
     });
   }
   
+  restartGame() {
+    if (!this.isOwner() || !this.game.is_ended) {
+      return;
+    }
+    
+    this.gameService.restartGame(this.gameId).subscribe({
+      next: (response) => {
+        console.log('Game restarted successfully:', response);
+        // Redirigir a la sala de espera para prepararse
+        this.router.navigate(['/waiting-room', this.gameId]);
+      },
+      error: (error) => {
+        console.error('Error restarting game:', error);
+        this.error = error.error?.message || 'Error al reiniciar el juego';
+        setTimeout(() => this.error = '', 3000);
+      }
+    });
+  }
+  
+  isOwner(): boolean {
+    return this.currentUser && this.game && this.currentUser.id === this.game.owner_id;
+  }
+  
   isPlayerTurn(playerId: number): boolean {
     if (!this.game || !this.game.player_ids) {
       return false;

@@ -10,6 +10,11 @@
 
   <div *ngIf="winner" class="winner-announcement">
     <h3>🎉 Winner: {{ winner }} 🎉</h3>
+    <div *ngIf="isOwner() && game.is_ended" class="restart-section">
+      <button (click)="restartGame()" class="btn-restart">
+        🔄 Restart Game with Same Players
+      </button>
+    </div>
   </div>
 
   <div class="game-status">

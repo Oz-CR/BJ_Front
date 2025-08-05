@@ -53,8 +53,29 @@
 
 .winner-announcement h3 {
   color: #333;
-  margin: 0;
+  margin: 0 0 15px 0;
   font-size: 24px;
+}
+
+.restart-section {
+  margin-top: 15px;
+}
+
+.btn-restart {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-restart:hover {
+  background-color: #138496;
+  transform: translateY(-2px);
 }
 
 .game-status {

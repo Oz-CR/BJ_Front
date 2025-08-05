@@ -143,6 +143,12 @@ export class WaitingRoom implements OnInit, OnDestroy {
           // Si el juego ha iniciado, redirigir a la página de juego
           this.router.navigate(['/ingame'], { queryParams: { gameId: this.gameId } });
         }
+        
+        if (update && update.type === 'game_restarted') {
+          // Si el juego ha sido reiniciado, mostrar mensaje y recargar datos
+          console.log('Game has been restarted, refreshing data');
+          this.refreshGameData();
+        }
       },
       error: (error) => {
         console.error('Error in game updates:', error);

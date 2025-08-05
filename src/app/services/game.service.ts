@@ -154,6 +154,11 @@ export class GameService {
         observer.next({ type: 'game_started', data });
       });
 
+      this.socket.on('game_restarted', (data) => {
+        console.log('Game restarted event:', data);
+        observer.next({ type: 'game_restarted', data });
+      });
+
       return () => {
         this.socket.off('gameNotify');
         this.socket.off('player_joined');
